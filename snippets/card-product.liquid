@@ -331,10 +331,12 @@
             </span>
           {%- endif -%}
         </div>
-        {% if settings.enable_color_swatches == true %}
-          {% render 'swatches', product:card_product %}
-        {% endif %}
+       
       </div>
+      {% if settings.enable_color_swatches == true or settings.enable_sizes == true %}
+        {% render 'swatches', product: card_product %}
+      {% endif %}
+      
     </div>
   </div>
 {%- else -%}
