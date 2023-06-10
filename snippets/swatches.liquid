@@ -1,0 +1,25 @@
+{% liquid
+    assign colorOptions = ""
+    for option in product.options_with_values
+      assign optionNameHandle = option.name | handle
+      if optionNameHandle == "color"
+        for value in option.values
+          assign colorOptions = colorOptions | append: value | append: ","
+        endfor
+      endif
+    endfor
+    assign colorOptions = colorOptions | split:","
+%}
+{% if colorOptions.size > 0 %}
+    <div class="color__swatches">
+    {% for color in colorOpions %}
+        {{ color }}
+        {% for variant in product.variants %}
+            {{ variant.option1 }}-{{ variant.option2 }}-{{ variant.option3 }}
+            {% if variant.option1 == color or variant.option2 == color or variant.option3 == color %}
+            <div class="color__swatches-swatch color-{{ color | handle }}" data-variantid="{{ variant.id }}" data-variantimg="{{ variant.image | img_url:"150x150" }}"></div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endif %}

@@ -113,6 +113,21 @@
     ]
   },
   {
+    "name":"Product Card",
+    "settings":[
+      {
+        "label":"Enable color swatches?",
+        "id":"enable_color_swatches",
+        "type":"checkbox"
+      },
+      {
+        "label":"Enable Size Selector?",
+        "id":"enable_sizes",
+        "type":"checkbox"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.typography.name",
     "settings": [
       {
