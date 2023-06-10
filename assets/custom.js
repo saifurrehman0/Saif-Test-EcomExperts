@@ -74,7 +74,7 @@ if (productCards.length > 0) {
         })
           .then(response => response.json())
           .then(res => {
-            // window.location = '/cart';
+            window.location = '/cart';
           })
           .catch(error => {
             console.error('Error:', error);
