@@ -118,12 +118,14 @@
       {
         "label": "Enable color swatches?",
         "id": "enable_color_swatches",
-        "type": "checkbox"
+        "type": "checkbox",
+        "default":true
       },
       {
         "label": "Enable Size Selector?",
         "id": "enable_sizes",
-        "type": "checkbox"
+        "type": "checkbox",
+        "default":true
       }
     ]
   },

@@ -231,6 +231,7 @@
                       <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
                         {{ 'products.product.quantity.label' | t }}
                       </label>
+                      {% unless item.variant.id == 45224281506089 %}
                       <quantity-input class="quantity cart-quantity">
                         <button class="quantity__button no-js-hidden" name="minus" type="button">
                           <span class="visually-hidden">
@@ -263,7 +264,7 @@
                           {% render 'icon-plus' %}
                         </button>
                       </quantity-input>
-
+                       {% endunless %}
                       <cart-remove-button
                         {% if item.variant.id == 45223570637097 and haveBundledProduct == true %}
                           data-removeproduct="true"

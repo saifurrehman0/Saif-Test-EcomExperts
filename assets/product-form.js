@@ -38,10 +38,32 @@ if (!customElements.get('product-form')) {
       fetch(`${routes.cart_add_url}`, config)
         .then((response) => response.json())
         .then((response) => {
+          
+  
+          if (formData.get('id') === "45223570637097"){
+          fetch(`/cart/add.js`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              'items': [{
+                'id': 45224281506089,
+                'quantity': 1
+            }]
+            })
+          })
+            .then(response => response.json())
+            .then(res => {this.cart.renderContents(res);}
+            )
+            .catch(error => {
+              console.error('Error:', error);
+            });
+          }
           if (response.status) {
             publish(PUB_SUB_EVENTS.cartError, {source: 'product-form', productVariantId: formData.get('id'), errors: response.description, message: response.message});
             this.handleErrorMessage(response.description);
-
+  
             const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
             if (!soldOutMessage) return;
             this.submitButton.setAttribute('aria-disabled', true);
