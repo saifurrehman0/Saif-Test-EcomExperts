@@ -113,17 +113,17 @@
     ]
   },
   {
-    "name":"Product Card",
-    "settings":[
+    "name": "Product Card",
+    "settings": [
       {
-        "label":"Enable color swatches?",
-        "id":"enable_color_swatches",
-        "type":"checkbox"
+        "label": "Enable color swatches?",
+        "id": "enable_color_swatches",
+        "type": "checkbox"
       },
       {
-        "label":"Enable Size Selector?",
-        "id":"enable_sizes",
-        "type":"checkbox"
+        "label": "Enable Size Selector?",
+        "id": "enable_sizes",
+        "type": "checkbox"
       }
     ]
   },
