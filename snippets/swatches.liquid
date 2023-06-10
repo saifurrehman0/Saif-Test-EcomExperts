@@ -27,9 +27,10 @@
     {% for color in colorsList %}
         {% for variant in product.variants %}
           {% if variant.options[colorsIndex] == color %} 
-            <div class="color__swatches-swatch color-{{ color | handle }}" 
+            <div class="color__swatches-swatch color-{{ color | handle }}{% if forloop.index == 1 %} active {% endif %}" 
                 data-variantid="{{ variant.id }}" 
                 data-color="variantcolor-{{ color | handle }}"
+                data-name="{{ color }}"
                 data-variantimg="{{ variant.image | img_url:"master" }}"
                 style="background-color: {{ color }};background-image:url("{{ color | handle | append: ".png" | fallback_families_url }}")"
             ></div>
@@ -47,7 +48,7 @@
         {% for variant in product.variants %}
           {% if variant.options[colorsIndex] == color %} 
             {% assign variantSizeHandle = variant.options[sizesIndex]  | handle %}
-              <option class="product__sizes-size" data-value="{{ variant.id }}"
+              <option class="product__sizes-size" value="{{ variant.id }}"
               {% if variantSizeHandle == "unselected" %} selected {% endif %}
               >
                 {{ variant.options[sizesIndex] }}
@@ -56,11 +57,11 @@
         {% endfor %}
       </select>
       {% endfor %}
-    {% else %}
+    {% else %} 
     <select>
       {% for variant in product.variants  %}
           {% assign variantSizeHandle = variant.options[sizesIndex]  | handle %}
-            <option class="product__sizes-size" data-value="{{ variant.id }}"
+            <option class="product__sizes-size" value="{{ variant.id }}"
             {% if variantSizeHandle == "unselected" %} selected {% endif %}
             >
               {{ variant.options[sizesIndex] }}
