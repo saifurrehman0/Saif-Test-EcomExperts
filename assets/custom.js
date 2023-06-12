@@ -40,18 +40,21 @@ if (productCards.length > 0) {
     }
 
     function addToCart() {
-      const activeSizeSelect = card.querySelector('.product__sizes select.active');
-      const activeSize = card.querySelector('.product__sizes select.active').selectedOptions[0].textContent.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s/g, '');
+      const activeSizeSelect = card.querySelector('.product__sizes select.active') || card.querySelector('.product__sizes select') ;
+      const activeSize = activeSizeSelect.selectedOptions[0].textContent.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s/g, '');
       const variant_id = activeSizeSelect ? activeSizeSelect.value : null;
-      const activeColor = card.querySelector('.color__swatches-swatch.active').getAttribute('data-name').toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s/g, '');
-      
+      const colorsList = card.querySelector('.color__swatches-swatch.active');
+      let activeColor;
+      if(colorsList){
+      activeColor = card.querySelector('.color__swatches-swatch.active').getAttribute('data-name').toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s/g, '');
+    }
       if (variant_id) {
         const quantity = 1;
         let items = [{
             'id': parseInt(variant_id),
             'quantity': quantity
           }];
-        if(activeColor == "black" && activeSize === "medium"){
+        if(activeColor === "black" && activeSize === "medium"){
             items.push({
                 'id': 45224281506089,
                 'quantity': 1

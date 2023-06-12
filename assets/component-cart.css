@@ -2,7 +2,9 @@
   position: relative;
   display: block;
 }
-
+[data-variantid="45224281506089"] .cart-item__details {
+  pointer-events: none!important;
+}
 .cart__empty-text,
 .is-empty .cart__contents,
 cart-items.is-empty .title-wrapper-with-link,

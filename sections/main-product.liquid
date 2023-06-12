@@ -528,7 +528,28 @@
       assign seo_media = product.featured_media
     endif
   -%}
-
+  <script>
+    const selectedSize = document.querySelector('legend.selected-size');
+    const sizesList = document.querySelector('.sizes-list');
+    const allSizesElems = sizesList.querySelectorAll('input');
+    const allSizesElemsLabels = sizesList.querySelectorAll('label');
+    const changeEvent = new Event('click')
+    {% comment %} allSizesElems[0].checked = true; {% endcomment %}
+    allSizesElemsLabels[0].dispatchEvent(changeEvent);
+    console.log(allSizesElems[0])
+    if(selectedSize){
+      selectedSize.addEventListener('click', function(){
+        sizesList.classList.toggle('is_visible');
+      })}
+      if(allSizesElems.length > 0){
+        allSizesElems.forEach(input=>{
+          input.addEventListener('change',()=>{
+            sizesList.classList.remove('is_visible');
+            selectedSize.textContent = input.value;
+          })
+      })
+    }
+  </script>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org/",

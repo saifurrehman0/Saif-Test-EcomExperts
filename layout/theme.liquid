@@ -46,14 +46,111 @@
       {{ body_font_italic | font_face: font_display: 'swap' }}
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
-
+      @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueBold.woff2' | asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueBold.woff'| asset_url }}") format('woff');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueMedium.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueMedium.woff'| asset_url }}") format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueBlackCond.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueBlackCond.woff'| asset_url }}") format('woff');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueLight.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueLight.woff'| asset_url }}") format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueThin.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueThin.woff'| asset_url }}") format('woff');
+      font-weight: 100;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueLight.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueLight.woff'| asset_url }}") format('woff');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueHeavy.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueHeavy.woff'| asset_url }}") format('woff');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueBold.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueBold.woff'| asset_url }}") format('woff');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueMedium.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueMedium.woff'| asset_url }}") format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueRegular.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueRegular.woff'| asset_url }}") format('woff');
+      font-weight: 100;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'HelveticaNeue';
+      src: url("{{'HelveticaNeueItalic.woff2'| asset_url }}") format('woff2'),
+          url("{{'HelveticaNeueItalic.woff'| asset_url }}") format('woff');
+      font-weight: 100;
+      font-style: italic;
+      font-display: swap;
+    }
       :root {
-        --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+        --font-body-family: 'HelveticaNeue',{{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
         --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
 
-        --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+        --font-heading-family: 'HelveticaNeue',{{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
 

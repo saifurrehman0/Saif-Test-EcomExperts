@@ -217,7 +217,7 @@
                   <li class="grid__item">
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                        {% unless product.handle == "soft-winter-jacket-bundle-product" %}
+                        {% unless item.handle != "dark-winter-jacket" or item.handle != "soft-winter-jacket-bundle-product" %}
                           {%- capture product_settings -%}{%- if section.settings.product_show_vendor -%}vendor,{%- endif -%}title,price{%- endcapture -%}
                         {% render 'card-product',
                           card_product: item,

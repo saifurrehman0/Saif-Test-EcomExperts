@@ -22,9 +22,24 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
-          <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+        {% assign optionNameHandle = option.name | handle %}
+        <fieldset class="js product-form__input option-{{ option.name | handle }}">
+          
+          <legend class="form__label is-{{ option.name | handle }}">
+            {{ option.name }}
+          </legend>
+          {% if optionNameHandle == "size" %}
+           <legend class="selected-size">
+            {{ option.values[0] }}
+          </legend>
+          {% endif %}
+          {% if optionNameHandle == "size" %}
+            <div class="sizes-list">
+          {% endif %}
+           {% render 'product-variant-options', product: product, option: option, block: block %}
+          {% if optionNameHandle == "size" %}
+            </div>
+          {% endif %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
