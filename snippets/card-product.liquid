@@ -333,12 +333,10 @@
         </div>
        
       </div>
-      
       {% if settings.enable_color_swatches == true or settings.enable_sizes == true %}
-      <div class="swatches__wrapper">
         {% render 'swatches', product: card_product %}
-      </div>
       {% endif %}
+      
     </div>
   </div>
 {%- else -%}

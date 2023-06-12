@@ -529,26 +529,45 @@
     endif
   -%}
   <script>
-    const selectedSize = document.querySelector('legend.selected-size');
-    const sizesList = document.querySelector('.sizes-list');
-    const allSizesElems = sizesList.querySelectorAll('input');
-    const allSizesElemsLabels = sizesList.querySelectorAll('label');
-    const changeEvent = new Event('click')
-    {% comment %} allSizesElems[0].checked = true; {% endcomment %}
-    allSizesElemsLabels[0].dispatchEvent(changeEvent);
-    console.log(allSizesElems[0])
-    if(selectedSize){
-      selectedSize.addEventListener('click', function(){
-        sizesList.classList.toggle('is_visible');
-      })}
-      if(allSizesElems.length > 0){
-        allSizesElems.forEach(input=>{
-          input.addEventListener('change',()=>{
-            sizesList.classList.remove('is_visible');
-            selectedSize.textContent = input.value;
-          })
-      })
+    let sizesList = document.querySelector('.sizes-list');
+    let allSizesElems = [];
+    let allSizesElemsLabels = [];
+    
+    // Get all input elements and label elements within the sizes list
+    if (sizesList) {
+      allSizesElems = Array.from(sizesList.querySelectorAll('input'));
+      allSizesElemsLabels = Array.from(sizesList.querySelectorAll('label'));
     }
+    
+    // Create a new click event
+    const changeEvent = new Event('click');
+    
+    // Set the first input element as checked (commented out)
+    // allSizesElems[0].checked = true;
+    
+    // Dispatch a click event on the first label element
+    if (allSizesElemsLabels.length > 0) {
+      allSizesElemsLabels[0].dispatchEvent(changeEvent);
+    }
+    
+    // Toggle the visibility of the sizes list when the selected size element is clicked
+    const selectedSize = document.querySelector('legend.selected-size');
+    if (selectedSize) {
+      selectedSize.addEventListener('click', () => {
+        sizesList.classList.toggle('is_visible');
+      });
+    }
+    
+    // Update the text content of the selected size element with the input value
+    allSizesElems.forEach(input => {
+      input.addEventListener('change', () => {
+        // Remove the 'is_visible' class from the sizes list
+        sizesList.classList.remove('is_visible');    
+        selectedSize.textContent = input.value;
+      });
+    });
+   
+  
   </script>
   <script type="application/ld+json">
     {
