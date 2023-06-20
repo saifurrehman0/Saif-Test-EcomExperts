@@ -197,6 +197,7 @@
                 </details>
               </div>
             {%- when 'quantity_selector' -%}
+              {% unless product.handle == "soft-winter-jacket-bundle-product" %}
               <div
                 id="Quantity-Form-{{ section.id }}"
                 class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -282,6 +283,7 @@
                   {%- endif -%}
                 </div>
               </div>
+            {% endunless %}
             {%- when 'popup' -%}
               <modal-opener
                 class="product-popup-modal__opener no-js-hidden quick-add-hidden"
@@ -308,9 +310,13 @@
               %}
 
             {%- when 'variant_picker' -%}
-              {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+              {% unless product.handle == "soft-winter-jacket-bundle-product" %}
+                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+              {% endunless %}
             {%- when 'buy_buttons' -%}
-              {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+              {% unless product.handle == "soft-winter-jacket-bundle-product" %}
+               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+              {% endunless %}
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid
@@ -522,7 +528,47 @@
       assign seo_media = product.featured_media
     endif
   -%}
-
+  <script>
+    let sizesList = document.querySelector('.sizes-list');
+    let allSizesElems = [];
+    let allSizesElemsLabels = [];
+    
+    // Get all input elements and label elements within the sizes list
+    if (sizesList) {
+      allSizesElems = Array.from(sizesList.querySelectorAll('input'));
+      allSizesElemsLabels = Array.from(sizesList.querySelectorAll('label'));
+    }
+    
+    // Create a new click event
+    const changeEvent = new Event('click');
+    
+    // Set the first input element as checked (commented out)
+    // allSizesElems[0].checked = true;
+    
+    // Dispatch a click event on the first label element
+    if (allSizesElemsLabels.length > 0) {
+      allSizesElemsLabels[0].dispatchEvent(changeEvent);
+    }
+    
+    // Toggle the visibility of the sizes list when the selected size element is clicked
+    const selectedSize = document.querySelector('legend.selected-size');
+    if (selectedSize) {
+      selectedSize.addEventListener('click', () => {
+        sizesList.classList.toggle('is_visible');
+      });
+    }
+    
+    // Update the text content of the selected size element with the input value
+    allSizesElems.forEach(input => {
+      input.addEventListener('change', () => {
+        // Remove the 'is_visible' class from the sizes list
+        sizesList.classList.remove('is_visible');    
+        selectedSize.textContent = input.value;
+      });
+    });
+   
+  
+  </script>
   <script type="application/ld+json">
     {
       "@context": "http://schema.org/",

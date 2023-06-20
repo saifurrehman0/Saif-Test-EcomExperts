@@ -362,3 +362,45 @@
 .card-article-info {
   margin-top: 1rem;
 }
+
+.color__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 4;
+}
+.color__swatches-swatch:empty {
+  display: block;
+}
+.color__swatches-swatch {
+  width: 20px;
+  height: 20px;
+  margin: 0.5rem;
+  border: 1px solid #0001;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.color__swatches-swatch:first-child{
+  margin-left:0rem;
+}
+.product__sizes{
+  display: flex;
+  z-index:4;
+}
+.product__sizes select {
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 0px 2px #0001;
+  border-radius: 0px;
+  width: 50%;
+  height: 30px;
+  border-radius: 5px 0px 0px 5px;
+  cursor: pointer;
+}
+button.add__to-bag{
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0px 5px 5px 0px;
+  cursor: pointer;
+  outline: 0px;
+}

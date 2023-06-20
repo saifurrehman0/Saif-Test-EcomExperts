@@ -3147,3 +3147,15 @@ details-disclosure > details {
     100% { transform: rotate(360deg) translateX(1em) rotate(-360deg) scale(1.2); }
   }
 }
+
+.sizeisactive{
+  display: none;
+  width:100vw;
+  height:100vh;
+  position: fixed;
+  left:0px;
+  top:0px;
+}
+.sizeisactive.active{
+  display: block;
+}

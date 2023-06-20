@@ -1,0 +1,76 @@
+{% liquid
+  assign colorsList = ""
+  assign sizesList = ""
+  assign colorsIndex = 0
+  assign sizesIndex = 0
+  for option in product.options_with_values
+      assign optionHandle =  option.name | handle
+      if optionHandle == "color"
+          assign colorsIndex = forloop.index | minus:1
+          for value in option.values
+             assign colorsList = colorsList | append: value | append:","
+          endfor
+      endif
+      if optionHandle == "size"
+          assign sizesIndex = forloop.index | minus:1
+          for value in option.values
+             assign sizesList = sizesList | append: value | append:","
+          endfor
+      endif
+  endfor
+  assign colorsList = colorsList | split:"," | uniqu
+  assign sizesList = sizesList | split:"," | uniqu
+%}
+
+{% if colorsList.size > 0 and settings.enable_color_swatches == true %}
+    <div class="color__swatches">
+    {% for color in colorsList %}
+        {% for variant in product.variants %}
+          {% if variant.options[colorsIndex] == color %} 
+            <div class="color__swatches-swatch color-{{ color | handle }}{% if forloop.index == 1 %} active {% endif %}" 
+                data-variantid="{{ variant.id }}" 
+                data-color="variantcolor-{{ color | handle }}"
+                data-name="{{ color }}"
+                data-variantimg="{{ variant.image | img_url:"master" }}"
+                style="background-color: {{ color }};background-image:url("{{ color | handle | append: ".png" | fallback_families_url }}")"
+            ></div>
+            {% break %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endif %}
+{% if sizesList.size > 0 and settings.enable_sizes == true %}
+  <div class="product__sizes">
+    {% if colorsList.size > 0 %}
+      {% for color in colorsList  %}
+        <select class="product__sizes variantcolor-{{ color | handle }} {% if forloop.index > 1 %} hidden {% else %}active {% endif %}">
+        {% for variant in product.variants %}
+          {% if variant.options[colorsIndex] == color %} 
+            {% assign variantSizeHandle = variant.options[sizesIndex]  | handle %}
+              <option class="product__sizes-size" value="{{ variant.id }}"
+              {% if variantSizeHandle == "unselected" %} selected {% endif %}
+              >
+                {{ variant.options[sizesIndex] }}
+              </option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      {% endfor %}
+    {% else %} 
+    <select>
+      {% for variant in product.variants  %}
+          {% assign variantSizeHandle = variant.options[sizesIndex]  | handle %}
+            <option class="product__sizes-size" value="{{ variant.id }}"
+            {% if variantSizeHandle == "unselected" %} selected {% endif %}
+            >
+              {{ variant.options[sizesIndex] }}
+            </option>
+      {% endfor %}
+    </select>
+  {% endif %}
+   <button class="add__to-bag ">
+    ADD
+  </button>
+  </div>
+{% endif %}

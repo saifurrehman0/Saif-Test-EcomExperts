@@ -18,6 +18,7 @@
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
+
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
 {%- if card_product and card_product != empty -%}
@@ -330,7 +331,12 @@
             </span>
           {%- endif -%}
         </div>
+       
       </div>
+      {% if settings.enable_color_swatches == true or settings.enable_sizes == true %}
+        {% render 'swatches', product: card_product %}
+      {% endif %}
+      
     </div>
   </div>
 {%- else -%}
@@ -376,6 +382,7 @@
             {% render 'price' %}
           </div>
         </div>
+        
       </div>
     </div>
   </div>

@@ -46,6 +46,7 @@
   -%}
 
   {%- if block.settings.picker_type == 'button' -%}
+    {% assign optionHandle = option.name | handle %}
     <input
       type="radio"
       id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
@@ -59,7 +60,12 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+      {% if optionHandle == "color" %}
+        class="color-swatch"
+        style="background-color: {{ value | handle }};background-image:url('{{ value | handle | append: '.png' | asset_url }}')"
+      {% endif %}
+    >
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>
