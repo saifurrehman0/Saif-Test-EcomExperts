@@ -36,8 +36,8 @@
         "button"
       ],
       "settings": {
-        "image": "{{ shop.metaobjects.slideshow_item[\"slideshow-item-pqe0cdiw\"].image_1.value }}",
-        "image_2": "{{ shop.metaobjects.slideshow_item[\"slideshow-item-pqe0cdiw\"].image_2.value }}",
+        "image": "{{ shop.metaobjects.slideshow_item[\"slideshow-item-crzxagoa\"].image_1.value }}",
+        "image_2": "{{ shop.metaobjects.slideshow_item[\"slideshow-item-crzxagoa\"].image_2.value }}",
         "image_overlay_opacity": 40,
         "image_height": "large",
         "desktop_content_position": "bottom-center",
